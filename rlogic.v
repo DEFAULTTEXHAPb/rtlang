@@ -1,8 +1,17 @@
-module top (xvec, y);
+module ff_with_en_and_async_reset(clock, reset, enable, d, q);
 
-    input wire [3:0] xvec;
-    output wire y;
+input clock, reset, enable, d;
 
-    assign y = &xvec;
+output reg q;
+
+always @(posedge clock, posedge reset)
+
+    if (reset)
+
+        q <= 0;
+
+    else if (enable)
+
+        q <= d;
 
 endmodule
